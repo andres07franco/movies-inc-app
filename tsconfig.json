@@ -1,0 +1,18 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": "./",
+    "paths": {
+      "@movies/*": ["./src/app/movies/*"],
+      "@movies": ["src/app/movies/movies.module.ts"],
+      "@core/*": ["./src/app/core/*"],
+      "@core": ["src/app/core/core.module.ts"],
+      "@shared/*": ["./src/app/shared/*"],
+      "@shared": ["src/app/shared/shared.module.ts"],
+      "@ui-components/*": ["./src/libs/ui-components/*"],
+      "@ui-components": ["src/libs/shared/ui-components.module.ts"],
+    }
+  },
+  "typeRoots": ["./src/app/shared/types"] 
+}
