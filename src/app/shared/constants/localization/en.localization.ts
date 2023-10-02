@@ -6,5 +6,6 @@ export default {
     GenersLabel: 'Geners',
     GeneralAudienceText: 'General Audience',
     AdultsText: 'Adults',
+    ActorText: 'Actors',
   },
 };

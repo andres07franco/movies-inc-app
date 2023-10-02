@@ -1,11 +1,11 @@
 import React from 'react';
+import { Typography } from '../../atoms';
 import { Container } from './rating.style';
-import Typography from '@ui-components/atoms/typography/typography.component';
 
 interface Props {
   rate: number;
 }
-const Rating: React.FC<Props> = ({ rate }) => {
+export const Rating: React.FC<Props> = ({ rate }) => {
   return (
     <Container>
       <Typography type="BigValue" color="tertiary10">

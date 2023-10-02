@@ -49,7 +49,7 @@ export class MoviesRestRepository implements MoviesRepository {
     return {
       id: raw.id,
       title: raw.title,
-      posterPath: raw.poster_path,
+      posterPath: `https://image.tmdb.org/t/p/original${raw.poster_path}`,
       releaseDate: raw.release_date,
       voteAverage: raw.vote_average,
       originalLanguage: raw.original_language,

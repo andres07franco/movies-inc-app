@@ -7,7 +7,7 @@ export interface CreditsRawDto {
   original_name: string;
   popularity: number;
   profile_path: string | null;
-  castId: number;
+  cast_id: number;
   character: string;
   credit_id: string;
   order: number;
