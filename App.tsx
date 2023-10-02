@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { Provider, createStore } from 'jotai';
 import AppRoutes from 'src/app/app.routes';
 import { useTheme } from '@shared/hooks/use-theme.hook';
+import '@shared/utils/i18n/init-transaltion.function';
 
 const store = createStore();
 

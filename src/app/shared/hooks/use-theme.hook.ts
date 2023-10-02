@@ -1,17 +1,17 @@
 import { useColorScheme } from 'react-native';
 import { DefaultTheme } from 'styled-components';
-import { ColorConstant } from '@shared';
+import { DarkColorConstant, LightColorConstant } from '@shared';
 
 export const useTheme = () => {
   const colorScheme = useColorScheme();
   const theme = (): DefaultTheme => {
     switch (colorScheme) {
       case 'light':
-        return ColorConstant.light;
+        return LightColorConstant;
       case 'dark':
-        return ColorConstant.dark;
+        return DarkColorConstant;
       default:
-        return ColorConstant.dark;
+        return DarkColorConstant;
     }
   };
   return {

@@ -3,9 +3,7 @@ import { PaginationParamsDto } from '@core/shared/dtos/pagination-params.dto';
 import { PaginationResultsDto } from '@core/shared/dtos/pagination-results.dto';
 
 export interface MoviesRepository {
-  getNowPlaying(
-    params: PaginationParamsDto,
-  ): Promise<PaginationResultsDto<Movie[]>>;
+  getById(id: number): Promise<Movie>;
 
   getNowPlaying(
     params: PaginationParamsDto,
