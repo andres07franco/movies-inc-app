@@ -10,8 +10,10 @@
       "@core": ["src/app/core/core.module.ts"],
       "@shared/*": ["./src/app/shared/*"],
       "@shared": ["src/app/shared/shared.module.ts"],
-      "@ui-components/*": ["./src/libs/ui-components/*"],
-      "@ui-components": ["src/libs/shared/ui-components.module.ts"],
+      "@ui-components/*": ["./src/app/ui-components/*"],
+      "@ui-components": ["src/app/ui-components.module.ts"],
+      "@translations/*": ["./src/libs/translations/*"],
+      "@translations": ["src/libs/translations/translations.module.ts"],
     }
   },
   "typeRoots": ["./src/app/shared/types"] 

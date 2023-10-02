@@ -1,11 +1,11 @@
 import React from 'react';
+import { Movie } from '@core';
 import { Container, Detail, Title } from './movie-item-info.style';
-import { Movie } from '@core/core.module';
 
 interface Props {
   movie: Movie;
 }
-const MovieItemInfo: React.FC<Props> = ({ movie }) => {
+export const MovieItemInfo: React.FC<Props> = ({ movie }) => {
   return (
     <Container>
       <Title type="Subtitle" color="neutral100">

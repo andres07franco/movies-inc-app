@@ -1,11 +1,11 @@
 import React from 'react';
+import { Typography } from '../../atoms';
 import { Container } from './headline.style';
-import Typography from '@ui-components/atoms/typography/typography.component';
 
 interface Props {
   text: string;
 }
-const Headline: React.FC<Props> = ({ text }) => {
+export const Headline: React.FC<Props> = ({ text }) => {
   return (
     <Container>
       <Typography type="Headline" color="neutral100">
