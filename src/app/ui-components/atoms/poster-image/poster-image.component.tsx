@@ -7,9 +7,13 @@ interface Props {
   posterPath: string;
 }
 const PosterImage: React.FC<Props> = ({ type, posterPath }) => {
-  let style = { width: 120, height: 170 };
-  if (type === 'Big') {
-    style = { width: Dimensions.get('screen').width, height: 310 };
+  let style = {
+    width: Dimensions.get('screen').width,
+    height: 300,
+    marginTop: 0,
+  };
+  if (type === 'Small') {
+    style = { width: 120, height: 170, marginTop: -25 };
   }
   return (
     <Image
