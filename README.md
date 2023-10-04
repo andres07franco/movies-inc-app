@@ -61,6 +61,7 @@ Amazing app to explore your favorites movies, building in  React Native.
 Create .env file and add the value for the follow  variables
 
     EXPO_PUBLIC_API_URL=https://api.themoviedb.org/3
+    EXPO_PUBLIC_IMAGE_URL_BASE=https://image.tmdb.org/t/p/original
     EXPO_PUBLIC_AUTH_TOKEN=eyxxxxxxxxxxx
 
 
