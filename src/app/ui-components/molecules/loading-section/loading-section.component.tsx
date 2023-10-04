@@ -1,14 +1,14 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
 import { Block } from '../../atoms';
-import { StyledCard } from './loading-block.style';
+import { StyledCard } from './loading-section.style';
 
 interface Props {
   loading: boolean;
   overlap?: boolean;
-  children: JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[] | boolean;
 }
-export const LoadingBlock: React.FC<Props> = ({
+export const LoadingSection: React.FC<Props> = ({
   overlap,
   loading,
   children,
@@ -26,8 +26,8 @@ export const LoadingBlock: React.FC<Props> = ({
   );
 };
 
-LoadingBlock.defaultProps = {
+LoadingSection.defaultProps = {
   overlap: false,
 };
 
-export default LoadingBlock;
+export default LoadingSection;

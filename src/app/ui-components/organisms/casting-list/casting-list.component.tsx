@@ -4,6 +4,7 @@ import { useTranslation } from '@translations';
 import { Casting } from '@core/movies/entities/casting.entity';
 import { ActorImage } from '../../atoms';
 import { Container, Content, Detail, Title } from './casting-list.style';
+
 interface Props {
   casting: Casting[];
 }

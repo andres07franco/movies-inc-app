@@ -5,6 +5,7 @@ import { Provider, createStore } from 'jotai';
 import AppRoutes from 'src/app/app.routes';
 import { useTheme } from '@shared/hooks/use-theme.hook';
 import '@shared/utils/i18n/init-transaltion.function';
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 const store = createStore();
 
@@ -14,9 +15,11 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <NavigationContainer>
-          <AppRoutes />
-        </NavigationContainer>
+        <RootSiblingParent>
+          <NavigationContainer>
+            <AppRoutes />
+          </NavigationContainer>
+        </RootSiblingParent>
       </Provider>
     </ThemeProvider>
   );

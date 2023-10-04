@@ -1,70 +1,62 @@
 import { PaginationParamsDto } from '@core/shared/dtos/pagination-params.dto';
 import { Movie } from '../entities/movie.entity';
-import axios, { AxiosResponse } from 'axios';
 import { PaginationResultsDto } from '@core/shared/dtos/pagination-results.dto';
 import { MoviesRepository } from '../services/interfaces/movies.repository';
+import { mapMovieRawToMovie, mapToPagination } from './mappers/movies.mapper';
+import { HttpClient } from '@core/shared/services/interfaces/http.client';
 import { MovieRawDto } from './dtos/movie-raw.dto';
+import { PagedRawDto } from './dtos/paged-raw.dto';
+import { GenericResults } from '@core/shared/dtos/generic-resutls.dto';
 
 export class MoviesRestRepository implements MoviesRepository {
+  constructor(private httpClient: HttpClient) {}
+
   async getById(id: number): Promise<Movie> {
-    const url = `${process.env.EXPO_PUBLIC_API_URL}/movie/${id}?language=en-U`;
-    const headers = {
-      Authorization: `Bearer ${process.env.EXPO_PUBLIC_AUTH_TOKEN}`,
-    };
-    try {
-      const response: AxiosResponse = await axios.get(url, { headers });
-      return this.mapMovieRawToMovie(response.data);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error('Error Code:', error.response?.status);
-        console.error('Result Data:', error.response?.data);
-      }
-      throw error;
-    }
+    const data = await this.httpClient.get<MovieRawDto>(
+      `movie/${id}?language=en-U`,
+    );
+    return mapMovieRawToMovie(data);
   }
 
   async getNowPlaying(
     pagination: PaginationParamsDto,
   ): Promise<PaginationResultsDto<Movie[]>> {
-    const url = `${process.env.EXPO_PUBLIC_API_URL}/movie/now_playing?language=en-US&page=${pagination.page}`;
-    const headers = {
-      Authorization: `Bearer ${process.env.EXPO_PUBLIC_AUTH_TOKEN}`,
+    const data = await this.httpClient.get<PagedRawDto<MovieRawDto[]>>(
+      `movie/now_playing?language=en-US&page=${pagination.page}`,
+    );
+    return mapToPagination(data);
+  }
+
+  async addRating(
+    movieId: number,
+    sessionId: string,
+    value: number,
+  ): Promise<GenericResults> {
+    const data = await this.httpClient.post<{
+      success: boolean;
+      status_code: number;
+      status_message: string;
+    }>(`movie/${movieId}/rating?guest_session_id=${sessionId}`, { value });
+    return {
+      success: data.success,
+      statusMessage: data.status_message,
+      statusCode: data.status_code,
     };
-    try {
-      const response: AxiosResponse = await axios.get(url, { headers });
-      const resultsMapped = response.data.results
-        .map(this.mapMovieRawToMovie)
-        .sort((a: Movie, b: Movie) => a.title.localeCompare(b.title));
-      return this.mapToPagination(resultsMapped, response);
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error('Error Code:', error.response?.status);
-        console.error('Result Data:', error.response?.data);
-      }
-      throw error;
-    }
   }
 
-  mapMovieRawToMovie(raw: MovieRawDto) {
-    return {
-      id: raw.id,
-      title: raw.title,
-      posterPath: `https://image.tmdb.org/t/p/original${raw.poster_path}`,
-      releaseDate: raw.release_date,
-      voteAverage: raw.vote_average,
-      originalLanguage: raw.original_language,
-      overview: raw.overview,
-      genres: raw.genres ?? [],
-      adult: raw.adult,
-    } as unknown as Movie;
+  async getSimilar(id: number): Promise<Movie[]> {
+    const data = await this.httpClient.get<PagedRawDto<MovieRawDto[]>>(
+      `movie/${id}/similar?language=en-US&page=1`,
+    );
+    const dataMapped = mapToPagination(data);
+    return dataMapped.resutls;
   }
 
-  mapToPagination(movies: Movie[], response: AxiosResponse) {
-    return {
-      page: response.data.page,
-      resutls: movies,
-      totalPages: response.data.total_pages,
-      totalResults: response.data.total_results,
-    } as PaginationResultsDto<Movie[]>;
+  async getRecommendations(id: number): Promise<Movie[]> {
+    const data = await this.httpClient.get<PagedRawDto<MovieRawDto[]>>(
+      `movie/${id}/recommendations?language=en-US&page=1`,
+    );
+    const dataMapped = mapToPagination(data);
+    return dataMapped.resutls;
   }
 }

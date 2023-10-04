@@ -1,14 +1,21 @@
 import React from 'react';
 import { Movie } from '@core';
 import { useTranslation } from '@translations';
-import { Container, Detail, Title } from './movie-detail-info.style';
-import Rating from '../rating/rating.component';
+import { RateButton } from '../../atoms';
+import { Rating } from '../../molecules';
+import {
+  Container,
+  Detail,
+  Title,
+  RateButtonContent,
+} from './movie-detail-block.style';
 
 interface Props {
   movie: Movie | undefined;
+  onPressRate: (movie: Movie) => void;
 }
 
-export const MovieDetailInfo: React.FC<Props> = ({ movie }) => {
+export const MovieDetailBlock: React.FC<Props> = ({ movie, onPressRate }) => {
   const { t } = useTranslation();
 
   if (!movie) {
@@ -21,6 +28,9 @@ export const MovieDetailInfo: React.FC<Props> = ({ movie }) => {
   const clasification = movie.adult ? t('Adults') : t('GeneralAudienceText');
   return (
     <Container>
+      <RateButtonContent>
+        <RateButton onPress={() => onPressRate(movie)} />
+      </RateButtonContent>
       <Title type="Title" color="neutral100">
         {movie.title}
       </Title>
@@ -43,4 +53,4 @@ export const MovieDetailInfo: React.FC<Props> = ({ movie }) => {
   );
 };
 
-export default MovieDetailInfo;
+export default MovieDetailBlock;

@@ -7,5 +7,8 @@ export default {
     GeneralAudienceText: 'General Audience',
     AdultsText: 'Adults',
     ActorText: 'Actors',
+    saveRatingTitle: 'Did you like the Movie?',
+    saveRatingButtonTitle: 'Rate It',
+    cancelButtonTitle: 'Cancel',
   },
 };

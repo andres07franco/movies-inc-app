@@ -1,6 +1,6 @@
 import React from 'react';
-import { Typography } from '../../atoms';
-import { Container } from './rating.style';
+import { StarRate } from '../../atoms';
+import { Container, RateText } from './rating.style';
 
 interface Props {
   rate: number;
@@ -8,9 +8,14 @@ interface Props {
 export const Rating: React.FC<Props> = ({ rate }) => {
   return (
     <Container>
-      <Typography type="BigValue" color="tertiary10">
+      <RateText type="BigValue" color="tertiary10">
         {rate}
-      </Typography>
+      </RateText>
+      <StarRate filled={rate >= 2} />
+      <StarRate filled={rate >= 4} />
+      <StarRate filled={rate >= 6} />
+      <StarRate filled={rate >= 8} />
+      <StarRate filled={rate >= 10} />
     </Container>
   );
 };
