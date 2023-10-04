@@ -2,11 +2,13 @@ import { Movie, PaginationResultsDto } from '@core/core.module';
 import { MovieRawDto } from '../dtos/movie-raw.dto';
 import { PagedRawDto } from '../dtos/paged-raw.dto';
 
+const imageUrlBase = process.env.EXPO_PUBLIC_IMAGE_URL_BASE;
+
 export function mapMovieRawToMovie(raw: MovieRawDto) {
   return {
     id: raw.id,
     title: raw.title,
-    posterPath: `https://image.tmdb.org/t/p/original${raw.poster_path}`,
+    posterPath: `${imageUrlBase}${raw.poster_path}`,
     releaseDate: raw.release_date,
     voteAverage: raw.vote_average,
     originalLanguage: raw.original_language,

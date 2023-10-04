@@ -41,3 +41,5 @@ __snapshots__/
 *.snap
 
 %ProgramData%/
+
+coverage/
