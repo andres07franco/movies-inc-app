@@ -1,9 +1,9 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import { MovieListScreen } from './movie-list.screen';
 import { Movie } from '@core/core.module';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'src/app/app.routes';
+import { fireEvent, render } from '@testing-library/react-native';
 
 jest.mock('../../hooks/use-get-now-playing.hook', () => ({
   useGetNowPlaying: () => ({
@@ -11,6 +11,13 @@ jest.mock('../../hooks/use-get-now-playing.hook', () => ({
       {
         title: 'AVENGERS',
         id: 1,
+        posterPath: '',
+        voteAverage: 10,
+        releaseDate: '2023-09-07',
+      },
+      {
+        title: 'TRANSFORMERS',
+        id: 2,
         posterPath: '',
         voteAverage: 10,
         releaseDate: '2023-09-07',
@@ -31,9 +38,7 @@ const mockNavigateFn = jest.fn((screen: string, params: { movie: Movie }) => ({
 }));
 
 const navigationMock = {
-  navigation: {
-    navigate: mockNavigateFn,
-  },
+  navigate: mockNavigateFn,
 } as unknown as NativeStackNavigationProp<
   RootStackParamList,
   'MovieDetailScreen'
@@ -41,9 +46,34 @@ const navigationMock = {
 
 describe('<MovieListScreen />', () => {
   it('renders correctly', () => {
-    const tree = renderer
-      .create(<MovieListScreen navigation={navigationMock} />)
-      .toJSON();
+    const tree = render(
+      <MovieListScreen navigation={navigationMock} />,
+    ).toJSON();
     expect(tree).toMatchSnapshot();
+  });
+
+  it('should navigate to MovieDetailScreen when press on a item', () => {
+    const { getByText } = render(
+      <MovieListScreen navigation={navigationMock} />,
+    );
+    const item = getByText('AVENGERS');
+    fireEvent.press(item);
+    expect(mockNavigateFn).toBeCalledWith('MovieDetailScreen', {
+      movie: {
+        title: 'AVENGERS',
+        id: 1,
+        posterPath: '',
+        voteAverage: 10,
+        releaseDate: '2023-09-07',
+      },
+    });
+  });
+
+  it('should render two items', () => {
+    const { queryAllByText } = render(
+      <MovieListScreen navigation={navigationMock} />,
+    );
+    const items = queryAllByText('language:');
+    expect(items).toHaveLength(2);
   });
 });
