@@ -5,4 +5,8 @@ module.exports = {
   ],
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  moduleNameMapper: {
+    '\\.svg': '<rootDir>/__mocks__/svgMock.js',
+  },
+  setupFilesAfterEnv: ['@testing-library/jest-native/extend-expect'],
 };
