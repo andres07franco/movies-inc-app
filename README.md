@@ -31,18 +31,18 @@ We only need run:
 
     yarn start
 
-### Current coverage 
-
-| File   |      % Stmts      |  % Branch | % Funcs | % Lines |
-|----------|:-------------:|------:|------:|------:|
-| All files  |  92.7  |   80.32 | 91.37 |93.04|
-
 
 ## Test
 
 We only need run:
 
     yarn test
+
+### Current coverage 
+
+| File   |      % Stmts      |  % Branch | % Funcs | % Lines |
+|----------|:-------------:|------:|------:|------:|
+| All files  |  92.7  |   80.32 | 91.37 |93.04|
 
 
 ## References
