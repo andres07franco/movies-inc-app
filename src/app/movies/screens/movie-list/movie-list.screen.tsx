@@ -5,7 +5,7 @@ import { useTranslation } from '@translations';
 import { Movie } from '@core/core.module';
 import { MovieItem } from '@ui-components/organisms';
 import { RootStackParamList } from 'src/app/app.routes';
-import { useGetNowPlaying } from '../../hooks/use-get-now-playing.hook';
+import { useGetNowPlaying } from '../../hooks';
 import { BasicLayout } from '@ui-components/templates';
 
 interface Props {

@@ -13,11 +13,13 @@ import {
 import { useTranslation } from '@translations';
 
 interface Props {
+  testID?: string;
   modalVisible: boolean;
   setModalVisible: (visible: boolean) => void;
   onSaveRateAsync: (rate: number) => Promise<void>;
 }
 export const RatingModal: React.FC<Props> = ({
+  testID,
   modalVisible,
   setModalVisible,
   onSaveRateAsync,
@@ -40,6 +42,7 @@ export const RatingModal: React.FC<Props> = ({
 
   return (
     <Modal
+      testID={testID}
       animationType="slide"
       transparent={true}
       visible={modalVisible}
@@ -56,6 +59,7 @@ export const RatingModal: React.FC<Props> = ({
             <RateWrapper>
               {rateArray.map((rt) => (
                 <StarRate
+                  testID={`star-rate-${rt}`}
                   key={rt}
                   size="big"
                   filled={rate >= rt}
@@ -71,6 +75,7 @@ export const RatingModal: React.FC<Props> = ({
               title={t('cancelButtonTitle')}
             />
             <ActionButton
+              testID="save-rate-button"
               type="primary"
               disabled={rate === 0}
               onPressAsync={handleSaveRateAsync}
@@ -83,4 +88,7 @@ export const RatingModal: React.FC<Props> = ({
   );
 };
 
+RatingModal.defaultProps = {
+  testID: 'rating-modal',
+};
 export default RatingModal;
