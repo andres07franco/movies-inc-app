@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { FlatList } from 'react-native';
 import { useTranslation } from '@translations';
 import { PosterImage } from '../../atoms';
 import { Container, Content, Title } from './movie-carousel.style';
@@ -11,19 +11,22 @@ interface Props {
 }
 export const MovieCarousel: React.FC<Props> = ({ title, movies }) => {
   const { t } = useTranslation();
-
   return (
     <Container>
       <Title type="Subtitle" color="neutral100">
         {t(title)}
       </Title>
-      <ScrollView horizontal={true}>
-        {movies.map((movie) => (
-          <Content key={movie.id}>
-            <PosterImage posterPath={movie.posterPath} type="Small" />
+      <FlatList
+        horizontal={true}
+        initialNumToRender={3}
+        renderItem={({ item }) => (
+          <Content>
+            <PosterImage posterPath={item.posterPath} type="Small" />
           </Content>
-        ))}
-      </ScrollView>
+        )}
+        keyExtractor={(item) => `${item.id}`}
+        data={movies}
+      />
     </Container>
   );
 };

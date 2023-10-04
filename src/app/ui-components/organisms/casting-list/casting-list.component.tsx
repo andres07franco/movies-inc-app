@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import { ScrollView } from 'react-native';
+import { FlatList } from 'react-native';
 import { useTranslation } from '@translations';
 import { Casting } from '@core/movies/entities/casting.entity';
 import { ActorImage } from '../../atoms';
@@ -18,28 +18,33 @@ export const CastingList: React.FC<Props> = ({ casting }) => {
     arrayName.pop();
     return arrayName.join(' ');
   }, []);
+
   return (
     <Container>
       <Title type="Subtitle" color="neutral100">
         {t('ActorText')}
       </Title>
-      <ScrollView horizontal={true}>
-        {casting.map((cast) => (
-          <Content key={cast.castId}>
+      <FlatList
+        horizontal={true}
+        initialNumToRender={4}
+        renderItem={({ item }) => (
+          <Content>
             <ActorImage
               source={{
-                uri: cast.profilePath ?? '',
+                uri: item.profilePath ?? '',
               }}
             />
             <Title type="Caption" color="neutral100" textAlign="center">
-              {simplifyName(cast.name)}
+              {simplifyName(item.name)}
             </Title>
             <Detail type="Caption" color="neutral90">
-              {simplifyName(cast.character)}
+              {simplifyName(item.character)}
             </Detail>
           </Content>
-        ))}
-      </ScrollView>
+        )}
+        keyExtractor={(item) => `${item.castId}`}
+        data={casting}
+      />
     </Container>
   );
 };
