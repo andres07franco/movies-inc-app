@@ -25,7 +25,9 @@ export const MovieDetailBlock: React.FC<Props> = ({ movie, onPressRate }) => {
   const year = movie.releaseDate.split('-')[0];
   const genres = movie.genres.map((x) => x.name).join(', ');
   const voteAverage = parseFloat(movie.voteAverage.toFixed(1));
-  const clasification = movie.adult ? t('Adults') : t('GeneralAudienceText');
+  const clasification = movie.adult
+    ? t('AdultsText')
+    : t('GeneralAudienceText');
   return (
     <Container>
       <RateButtonContent>

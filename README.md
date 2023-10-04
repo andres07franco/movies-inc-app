@@ -1,16 +1,17 @@
 
-# MOIVE INC APP
+# MOVIE INC APP
 
 Amazing app to explore your favorites movies, building in  React Native.
+
 
 ## Screenshots
 
 ![Demo APP](./assets/demo.gif)
 
 
-## Archithecture & Patterms
+## Architecture & Patterms
 
-- The file organization is inspired by the onion architecture and SOLID principles.
+- The file organization is inspired by the Onion Architecture and SOLID principles.
 
     ![Demo APP](./assets/Onion-View.PNG)
 
@@ -18,12 +19,19 @@ Amazing app to explore your favorites movies, building in  React Native.
 
 - For get better organization of the componets and apply the S of SOLID I used the Atomic design.
 
+
+## previous requirements
+
+- Nodejs
+- Expo
+
 # Configuration
 
 Create .env file and add the value for the follow  variables
 
     EXPO_PUBLIC_API_URL=https://api.themoviedb.org/3
     EXPO_PUBLIC_AUTH_TOKEN=eyxxxxxxxxxxx
+
 
 ## Run
 
@@ -38,7 +46,7 @@ We only need run:
 
     yarn test
 
-### Current coverage 
+### Current Coverage 
 
 | File   |      % Stmts      |  % Branch | % Funcs | % Lines |
 |----------|:-------------:|------:|------:|------:|
