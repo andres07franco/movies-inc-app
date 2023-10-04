@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'src/app/app.routes';
 import { fireEvent, render } from '@testing-library/react-native';
 
-jest.mock('../../hooks/use-get-now-playing.hook', () => ({
+jest.mock('../../hooks', () => ({
   useGetNowPlaying: () => ({
     movies: [
       {

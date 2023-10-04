@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from 'src/app/app.routes';
 import { PosterImage } from '@ui-components/atoms';
+import { Movie } from '@core';
+import { RatingModal } from '@ui-components/organisms';
+import { LoadingSection } from '@ui-components/molecules';
 import {
   CastingList,
   MovieCarousel,
   MovieDetailBlock,
 } from '@ui-components/organisms';
-import { Movie } from '@core';
-import { RatingModal } from '@ui-components/organisms';
-import { LoadingSection } from '@ui-components/molecules';
+import { NavigationLayout } from '@ui-components/templates';
 import {
   useGetSimilars,
   useAddRating,
@@ -18,7 +18,6 @@ import {
   useGetCastingByMovie,
   useGetRecomendations,
 } from '../../hooks';
-import { NavigationLayout } from '@ui-components/templates';
 
 interface Props {
   route: RouteProp<RootStackParamList, 'MovieDetailScreen'>;
@@ -59,12 +58,12 @@ const MovieDetailScreen: React.FC<Props> = ({ route }) => {
       </LoadingSection>
       {similars.length > 0 && (
         <LoadingSection loading={loadingSimilars}>
-          <MovieCarousel title="Similars" movies={similars} />
+          <MovieCarousel title="similarsTile" movies={similars} />
         </LoadingSection>
       )}
       {recomendations.length > 0 && (
         <LoadingSection loading={loadingRecomendations}>
-          <MovieCarousel title="Recomendations" movies={recomendations} />
+          <MovieCarousel title="recomendationsTile" movies={recomendations} />
         </LoadingSection>
       )}
       <RatingModal

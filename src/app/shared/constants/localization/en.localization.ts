@@ -10,5 +10,7 @@ export default {
     saveRatingTitle: 'Did you like the Movie?',
     saveRatingButtonTitle: 'Rate It',
     cancelButtonTitle: 'Cancel',
+    similarsTile: 'Similars',
+    recomendationsTile: 'Recomendations',
   },
 };

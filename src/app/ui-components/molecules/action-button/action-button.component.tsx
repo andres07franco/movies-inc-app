@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Text } from './action-button.style';
 
 interface Props {
+  testID?: string;
   title: string;
   type: 'primary' | 'secondary' | 'link';
   disabled?: boolean;
@@ -9,6 +10,7 @@ interface Props {
   onPressAsync?: () => Promise<void>;
 }
 export const ActionButton: React.FC<Props> = ({
+  testID,
   title,
   type,
   disabled,
@@ -39,6 +41,7 @@ export const ActionButton: React.FC<Props> = ({
   return (
     <Container
       {...{ buttonType: type }}
+      testID={testID}
       disabled={asyncDisabled || disabled}
       onPress={handlePress}
     >
@@ -47,6 +50,10 @@ export const ActionButton: React.FC<Props> = ({
       </Text>
     </Container>
   );
+};
+
+ActionButton.defaultProps = {
+  testID: 'acction-button',
 };
 
 export default ActionButton;

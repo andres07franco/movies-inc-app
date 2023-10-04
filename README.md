@@ -18,12 +18,25 @@ Amazing app to explore your favorites movies, building in  React Native.
 
 - For get better organization of the componets and apply the S of SOLID I used the Atomic design.
 
+# Configuration
+
+Create .env file and add the value for the follow  variables
+
+    EXPO_PUBLIC_API_URL=https://api.themoviedb.org/3
+    EXPO_PUBLIC_AUTH_TOKEN=eyxxxxxxxxxxx
 
 ## Run
 
 We only need run:
 
     yarn start
+
+### Current coverage 
+
+| File   |      % Stmts      |  % Branch | % Funcs | % Lines |
+|----------|:-------------:|------:|------:|------:|
+| All files  |  92.7  |   80.32 | 91.37 |93.04|
+
 
 ## Test
 
