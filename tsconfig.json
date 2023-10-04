@@ -6,6 +6,8 @@
     "paths": {
       "@movies/*": ["./src/app/movies/*"],
       "@movies": ["src/app/movies/movies.module.ts"],
+      "@authentication/*": ["./src/app/authentication/*"],
+      "@authentication": ["src/app/authentication/authentication.module.ts"],
       "@core/*": ["./src/app/core/*"],
       "@core": ["src/app/core/core.module.ts"],
       "@shared/*": ["./src/app/shared/*"],
@@ -14,6 +16,7 @@
       "@ui-components": ["src/app/ui-components.module.ts"],
       "@translations/*": ["./src/libs/translations/*"],
       "@translations": ["src/libs/translations/translations.module.ts"],
+      "@assets/*": ["./assets/*"],
     }
   },
   "typeRoots": ["./src/app/shared/types"] 

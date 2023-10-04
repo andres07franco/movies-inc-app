@@ -6,6 +6,7 @@ declare module 'styled-components' {
     primary10: string;
     secondary10: string;
     tertiary10: string;
+    quaternary10: string;
     neutral100: string;
     neutral90: string;
   }

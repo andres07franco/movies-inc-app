@@ -1,13 +1,24 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
+import React, { useState } from 'react';
+
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from 'src/app/app.routes';
 import { PosterImage } from '@ui-components/atoms';
-import { CastingList, MovieDetailInfo } from '@ui-components/molecules';
-import { LoadingBlock } from '@ui-components/organisms';
-import { useGetMovieById } from '../../hooks/use-get-movie-by-id.hook';
-import { useGetCastingByMovie } from '../../hooks/use-get-casting-by-movie.hook';
-import { Container } from './movie-detail.style';
+import {
+  CastingList,
+  MovieCarousel,
+  MovieDetailBlock,
+} from '@ui-components/organisms';
+import { Movie } from '@core';
+import { RatingModal } from '@ui-components/organisms';
+import { LoadingSection } from '@ui-components/molecules';
+import {
+  useGetSimilars,
+  useAddRating,
+  useGetMovieById,
+  useGetCastingByMovie,
+  useGetRecomendations,
+} from '../../hooks';
+import { NavigationLayout } from '@ui-components/templates';
 
 interface Props {
   route: RouteProp<RootStackParamList, 'MovieDetailScreen'>;
@@ -17,19 +28,51 @@ const MovieDetailScreen: React.FC<Props> = ({ route }) => {
     movie: { id, posterPath },
   } = route.params;
 
-  const { movie, loading } = useGetMovieById(id);
+  const { movie, loading, fetchMovie } = useGetMovieById(id);
+  const { movies: similars, loading: loadingSimilars } = useGetSimilars(id);
+  const { movies: recomendations, loading: loadingRecomendations } =
+    useGetRecomendations(id);
+
   const { casting } = useGetCastingByMovie(id);
+  const { addRating } = useAddRating();
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handlePressRate = (_: Movie) => {
+    setModalVisible(true);
+  };
+
+  const handlePressSaveRate = async (rate: number) => {
+    await addRating(rate, movie?.id ?? 0, () => {
+      setModalVisible(false);
+      fetchMovie().then();
+    });
+  };
+
   return (
-    <Container>
-      <StatusBar style="light" />
+    <NavigationLayout>
       <PosterImage type="Big" posterPath={posterPath} />
-      <LoadingBlock loading={loading} overlap>
-        <MovieDetailInfo movie={movie} />
-      </LoadingBlock>
-      <LoadingBlock loading={loading}>
+      <LoadingSection loading={loading} overlap>
+        <MovieDetailBlock movie={movie} onPressRate={handlePressRate} />
+      </LoadingSection>
+      <LoadingSection loading={loading}>
         <CastingList casting={casting} />
-      </LoadingBlock>
-    </Container>
+      </LoadingSection>
+      {similars.length > 0 && (
+        <LoadingSection loading={loadingSimilars}>
+          <MovieCarousel title="Similars" movies={similars} />
+        </LoadingSection>
+      )}
+      {recomendations.length > 0 && (
+        <LoadingSection loading={loadingRecomendations}>
+          <MovieCarousel title="Recomendations" movies={recomendations} />
+        </LoadingSection>
+      )}
+      <RatingModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        onSaveRateAsync={handlePressSaveRate}
+      />
+    </NavigationLayout>
   );
 };
 

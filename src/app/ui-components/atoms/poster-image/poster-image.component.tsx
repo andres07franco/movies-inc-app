@@ -6,22 +6,21 @@ interface Props {
   type: 'Big' | 'Small';
   posterPath: string;
 }
-const PosterImage: React.FC<Props> = ({ type, posterPath }) => {
-  let style = {
+const PosterImage: React.FC<Props> = (props: Props) => {
+  let styleCustom = {
     width: Dimensions.get('screen').width,
     height: 300,
-    marginTop: 0,
   };
-  if (type === 'Small') {
-    style = { width: 120, height: 170, marginTop: -25 };
+  if (props.type === 'Small') {
+    styleCustom = { width: 120, height: 170 };
   }
   return (
     <Image
-      style={{
-        ...style,
-      }}
+      {...props}
+      width={styleCustom.width}
+      height={styleCustom.height}
       source={{
-        uri: posterPath,
+        uri: props.posterPath,
       }}
     />
   );
