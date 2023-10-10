@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { Typography, Input } from '../../atoms';
 
 export const Label = styled(Typography)`
-  text-align: center;
+  text-align: left;
   font-weight: 600;
   padding-top: ${PixelRatio.roundToNearestPixel(10)}px;
   padding-bottom: ${PixelRatio.roundToNearestPixel(20)}px;

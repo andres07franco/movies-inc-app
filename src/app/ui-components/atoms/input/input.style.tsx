@@ -13,4 +13,5 @@ export const TextInputStyled = styled(TextInput)<Props>`
   border-width: 1px;
   margin-horizontal: 0px;
   margin-bottom: 0px;
+  padding: 8px;
 `;
