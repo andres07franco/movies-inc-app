@@ -15,6 +15,7 @@ Amazing app to explore your favorites movies, building in  React Native.
 - FF2: Movie Detail
 - FF3: Add Movie Rating
 - FF4: Similar and Recommended Movies
+- FF4: Favorities Movies
 
 ## Architecture & Patterms
 
@@ -45,7 +46,7 @@ Amazing app to explore your favorites movies, building in  React Native.
 
 | Target            |Name                      |Notes |
 |-------------------|--------------------------|------|
-| State Maganement  | jotai                    |I like Redux but this time I wanted to take the opportunity to simplify the state management without all of redux concepts| 
+| State Maganement  | Redux                    |For me it's the best library/patterm to handle global state| 
 | Navigation        | React Navigation         |      | 
 | Unit Tests        | Jest and Testing Library |      | 
 | Styling           | Styled Componet          |      | 

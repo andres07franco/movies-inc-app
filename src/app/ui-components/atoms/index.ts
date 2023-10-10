@@ -7,3 +7,8 @@ export * from './star-rate/star-rate.component';
 export * from './rate-button/rate-button.component';
 export * from './back-button/back-button.component';
 export * from './tab/tab.component';
+export * from './session-button/session-button.component';
+export * from './input/input.component';
+export * from './modal-body/modal-body.component';
+export * from './modal-footer/modal-footer.component';
+export * from './favorite-button/favorite-button.component';

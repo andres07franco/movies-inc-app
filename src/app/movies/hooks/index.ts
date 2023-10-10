@@ -4,3 +4,5 @@ export * from './use-get-movie-by-id.hook';
 export * from './use-get-now-playing.hook';
 export * from './use-get-similars.hook';
 export * from './use-get-recomendations.hook';
+export * from './use-add-favorite.hook';
+export * from './use-get-favorities.hook';

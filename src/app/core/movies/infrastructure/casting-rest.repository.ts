@@ -1,8 +1,8 @@
-import { CastingRepository } from '../services/interfaces/casting.repository';
-import { Casting } from '../entities/casting.entity';
-import { mapCredictsRawToCasting } from './mappers/casting.mapper';
-import { HttpClient } from '@core/shared/services/interfaces/http.client';
+import { HttpClient } from '@core/shared/domain/interfaces/http.client';
+import { CastingRepository } from '../domain/interfaces/casting.repository';
+import { Casting } from '../domain/entities/casting.entity';
 import { CreditsRawDto } from './dtos/credits-raw.dto';
+import { mapCredictsRawToCasting } from './mappers/casting.mapper';
 
 export class CastingRestRepository implements CastingRepository {
   constructor(private httpClient: HttpClient) {}

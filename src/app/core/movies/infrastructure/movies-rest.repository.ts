@@ -1,12 +1,12 @@
-import { PaginationParamsDto } from '@core/shared/dtos/pagination-params.dto';
-import { Movie } from '../entities/movie.entity';
-import { PaginationResultsDto } from '@core/shared/dtos/pagination-results.dto';
-import { MoviesRepository } from '../services/interfaces/movies.repository';
+import { HttpClient } from '@core/shared/domain/interfaces/http.client';
+import { PaginationParamsDto } from '@core/shared/domain/dtos/pagination-params.dto';
+import { PaginationResultsDto } from '@core/shared/domain/dtos/pagination-results.dto';
+import { GenericResults } from '@core/shared/domain/dtos/generic-resutls.dto';
 import { mapMovieRawToMovie, mapToPagination } from './mappers/movies.mapper';
-import { HttpClient } from '@core/shared/services/interfaces/http.client';
+import { MoviesRepository } from '../domain/interfaces/movies.repository';
+import { Movie } from '../domain/entities/movie.entity';
 import { MovieRawDto } from './dtos/movie-raw.dto';
 import { PagedRawDto } from './dtos/paged-raw.dto';
-import { GenericResults } from '@core/shared/dtos/generic-resutls.dto';
 
 export class MoviesRestRepository implements MoviesRepository {
   constructor(private httpClient: HttpClient) {}
@@ -44,6 +44,27 @@ export class MoviesRestRepository implements MoviesRepository {
     };
   }
 
+  async addFavorite(
+    movieId: number,
+    sessionId: string,
+    favorite: boolean,
+  ): Promise<GenericResults> {
+    const data = await this.httpClient.post<{
+      success: boolean;
+      status_code: number;
+      status_message: string;
+    }>(`account/null/favorite?session_id=${sessionId}`, {
+      media_type: 'movie',
+      media_id: movieId,
+      favorite: favorite,
+    });
+    return {
+      success: data.success,
+      statusMessage: data.status_message,
+      statusCode: data.status_code,
+    };
+  }
+
   async getSimilar(id: number): Promise<Movie[]> {
     const data = await this.httpClient.get<PagedRawDto<MovieRawDto[]>>(
       `movie/${id}/similar?language=en-US&page=1`,
@@ -58,5 +79,15 @@ export class MoviesRestRepository implements MoviesRepository {
     );
     const dataMapped = mapToPagination(data);
     return dataMapped.resutls;
+  }
+
+  async getFavorities(
+    sessionId: string,
+  ): Promise<PaginationResultsDto<Movie[]>> {
+    const data = await this.httpClient.get<PagedRawDto<MovieRawDto[]>>(
+      `account/null/favorite/movies?language=en-US&page=1&session_id=${sessionId}`,
+    );
+    const dataMapped = mapToPagination(data);
+    return dataMapped;
   }
 }

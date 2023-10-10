@@ -8,7 +8,7 @@ interface Props {
 export const MovieItemInfo: React.FC<Props> = ({ movie }) => {
   return (
     <Container>
-      <Title type="Subtitle" color="neutral100">
+      <Title type="Subtitle2" color="neutral100">
         {movie.title}
       </Title>
       <Detail type="Caption" color="neutral90">

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { FlatList } from 'react-native';
 import { useTranslation } from '@translations';
-import { Casting } from '@core/movies/entities/casting.entity';
+import { Casting } from '@core/core.module';
 import { ActorImage } from '../../atoms';
 import { Container, Content, Detail, Title } from './casting-list.style';
 

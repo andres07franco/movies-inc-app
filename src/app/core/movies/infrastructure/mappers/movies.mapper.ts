@@ -1,4 +1,5 @@
-import { Movie, PaginationResultsDto } from '@core/core.module';
+import { PaginationResultsDto } from '@core/shared/domain/dtos/pagination-results.dto';
+import { Movie } from '../../domain/entities/movie.entity';
 import { MovieRawDto } from '../dtos/movie-raw.dto';
 import { PagedRawDto } from '../dtos/paged-raw.dto';
 
@@ -15,6 +16,7 @@ export function mapMovieRawToMovie(raw: MovieRawDto) {
     overview: raw.overview,
     genres: raw.genres ?? [],
     adult: raw.adult,
+    favorite: false,
   } as unknown as Movie;
 }
 

@@ -6,6 +6,7 @@ export interface TextProps {
     | 'Headline'
     | 'Title'
     | 'Subtitle'
+    | 'Subtitle2'
     | 'Value'
     | 'BigValue'
     | 'Caption'
@@ -23,6 +24,8 @@ export const Text = styled(NativeText)<TextProps>`
         return 30;
       case 'Subtitle':
         return 20;
+      case 'Subtitle2':
+        return 18;
       case 'Value':
         return 18;
       case 'BigValue':

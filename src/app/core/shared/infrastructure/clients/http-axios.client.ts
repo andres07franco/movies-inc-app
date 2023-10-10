@@ -1,4 +1,4 @@
-import { HttpClient } from '../../../shared/services/interfaces/http.client';
+import { HttpClient } from '../../domain/interfaces/http.client';
 import axios, { AxiosResponse } from 'axios';
 
 export class HttpAxionClient implements HttpClient {
@@ -35,8 +35,8 @@ export class HttpAxionClient implements HttpClient {
       return response.data as T;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.error('Error Code:', error.response?.status);
-        console.error('Result Data:', error.response?.data);
+        console.log('Error Code:', error.response?.status);
+        console.log('Result Data:', error.response?.data);
       }
       throw error;
     }

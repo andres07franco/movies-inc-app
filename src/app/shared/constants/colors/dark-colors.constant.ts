@@ -6,4 +6,5 @@ export default {
   quaternary10: '#282ddb',
   neutral100: '#ffffff',
   neutral90: '#67647a',
+  error: 'red',
 };
