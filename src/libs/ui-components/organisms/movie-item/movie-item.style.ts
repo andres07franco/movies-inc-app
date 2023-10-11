@@ -19,7 +19,7 @@ export const PosterImageStyled = styled(PosterImage)`
 `;
 
 export const TouchableBlock = styled(TouchableOpacity)`
-  padding-top: ${PixelRatio.roundToNearestPixel(30)}px;
+  padding-top: ${PixelRatio.roundToNearestPixel(10)}px;
   min-width: ${Dimensions.get('screen').width}px;
   max-width: ${Dimensions.get('screen').width}px;
 `;

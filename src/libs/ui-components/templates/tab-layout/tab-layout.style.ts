@@ -21,6 +21,7 @@ export const TabTitleContainer = styled(View)`
   justify-content: flex-start;
   flex-direction: row;
   flex-grow: 1;
+  padding-bottom: ${PixelRatio.roundToNearestPixel(10)}px;
 `;
 
 export const ButtonContaner = styled(View)`
