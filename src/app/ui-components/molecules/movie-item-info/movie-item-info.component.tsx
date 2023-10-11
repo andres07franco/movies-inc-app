@@ -6,10 +6,11 @@ interface Props {
   movie: Movie;
 }
 export const MovieItemInfo: React.FC<Props> = ({ movie }) => {
+  let title = movie.title;
   return (
     <Container>
       <Title type="Subtitle2" color="neutral100">
-        {movie.title}
+        {title}
       </Title>
       <Detail type="Caption" color="neutral90">
         Release date: {movie.releaseDate}

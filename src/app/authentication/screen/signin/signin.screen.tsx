@@ -39,7 +39,7 @@ export const SessionModal: React.FC<Props> = ({
   };
   const handlePressSiginAsync = async (formData: LoginParams) => {
     Keyboard.dismiss();
-    signIn(formData, handleCancel);
+    await signIn(formData, handleCancel);
   };
 
   return (
@@ -79,7 +79,7 @@ export const SessionModal: React.FC<Props> = ({
           testID="save-rate-button"
           type="primary"
           disabled={loading}
-          onPress={handleSubmit(handlePressSiginAsync)}
+          onPressAsync={handleSubmit(handlePressSiginAsync)}
           title={t('Login')}
         />
       </ModalFooter>

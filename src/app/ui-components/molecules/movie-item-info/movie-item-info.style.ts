@@ -1,14 +1,14 @@
 import Typography from '@ui-components/atoms/typography/typography.component';
-import { PixelRatio, View } from 'react-native';
+import { Dimensions, PixelRatio, View } from 'react-native';
 import styled from 'styled-components';
-
+const SIDE_WIDTH = 230;
 export const Container = styled(View)`
   flex-direction: column;
-  flex-grow: 1;
   line-height: 5px;
 `;
 
 export const Title = styled(Typography)`
+  max-width: ${Dimensions.get('screen').width - SIDE_WIDTH}px;
   padding-bottom: ${PixelRatio.roundToNearestPixel(12)}px;
 `;
 

@@ -5,18 +5,18 @@ import { MovieItem } from '../movie-item/movie-item.component';
 
 interface Props {
   movies: Movie[];
-  showFavoriteButton: boolean;
+  showFavoriteButton?: boolean;
   loading: boolean;
   onRefresh?: (() => void) | undefined;
-  handlePressMovie: (movie: Movie) => void;
-  onPressFavorite?: (movie: Movie) => void;
+  onPressMovie: (movie: Movie) => void;
+  onPressFavorite?: (movie: Movie) => Promise<void>;
 }
 const MovieList: React.FC<Props> = ({
   movies,
   showFavoriteButton,
   loading,
   onRefresh,
-  handlePressMovie,
+  onPressMovie,
   onPressFavorite,
 }) => {
   return (
@@ -26,8 +26,8 @@ const MovieList: React.FC<Props> = ({
         <MovieItem
           movie={item}
           showFavorite={showFavoriteButton}
-          onPress={handlePressMovie}
-          onPressFavorite={onPressFavorite}
+          onPress={onPressMovie}
+          onPressFavoriteAsync={onPressFavorite}
         />
       )}
       refreshControl={
@@ -40,6 +40,10 @@ const MovieList: React.FC<Props> = ({
       keyExtractor={(item) => item.id.toString()}
     />
   );
+};
+
+MovieList.defaultProps = {
+  showFavoriteButton: false,
 };
 
 export { MovieList };

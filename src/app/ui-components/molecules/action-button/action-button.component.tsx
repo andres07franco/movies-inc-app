@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Text } from './action-button.style';
+import { ActivityIndicator } from 'react-native';
 
 interface Props {
   testID?: string;
@@ -45,9 +46,13 @@ export const ActionButton: React.FC<Props> = ({
       disabled={asyncDisabled || disabled}
       onPress={handlePress}
     >
-      <Text type="Subtitle" color={textColor}>
-        {title}
-      </Text>
+      {asyncDisabled ? (
+        <ActivityIndicator />
+      ) : (
+        <Text type="Subtitle" color={textColor}>
+          {title}
+        </Text>
+      )}
     </Container>
   );
 };

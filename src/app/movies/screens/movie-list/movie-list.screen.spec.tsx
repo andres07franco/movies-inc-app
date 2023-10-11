@@ -9,6 +9,12 @@ jest.mock('react-redux', () => ({
   useDispatch: jest.fn(),
 }));
 
+jest.mock('@shared/hooks/use-theme.hook', () => ({
+  useTheme: jest.fn(() => ({
+    theme: () => ({ neutral100: '#ffffff' }),
+  })),
+}));
+
 jest.mock('@shared/redux/selectors', () => ({
   useSessionSelector: jest.fn(() => ({
     sessionStarted: true,

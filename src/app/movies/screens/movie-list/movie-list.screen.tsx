@@ -60,18 +60,17 @@ const MovieListScreen: React.FC<Props> = ({ navigation }) => {
           loading={loading}
           showFavoriteButton={sessionStarted}
           onRefresh={getNowPlaying}
-          handlePressMovie={handlePressMovie}
+          onPressMovie={handlePressMovie}
           onPressFavorite={handlePressFavorite}
         />
       </Tab>
       {sessionStarted && (
-        <Tab title="Favorities" onSelected={getFavorities}>
+        <Tab title={t('Favorities')} onSelected={getFavorities}>
           <MovieList
             movies={favoriteMovies}
             loading={favoriteLoading}
-            showFavoriteButton={false}
             onRefresh={getFavorities}
-            handlePressMovie={handlePressMovie}
+            onPressMovie={handlePressMovie}
           />
         </Tab>
       )}
