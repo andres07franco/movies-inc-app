@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import FavoriteIcon from '@assets/favorite.svg';
 import FavoriteOutlineIcon from '@assets/favorite-outline.svg';
-import { ActivityIndicator, TouchableOpacity } from 'react-native';
-import { useTheme } from '@shared/hooks/use-theme.hook';
+import { TouchableOpacity } from 'react-native';
+import { StyledActivityIndicator } from './favorite-button.style';
 
 interface Props {
   favorite: boolean;
   onPressAsync: () => Promise<void>;
 }
 export const FavoriteButton: React.FC<Props> = ({ favorite, onPressAsync }) => {
-  const { theme } = useTheme();
   const [asyncDisabled, setAsyncDisabled] = useState(false);
   const FavIcon = favorite ? FavoriteIcon : FavoriteOutlineIcon;
 
@@ -28,11 +27,7 @@ export const FavoriteButton: React.FC<Props> = ({ favorite, onPressAsync }) => {
 
   return (
     <TouchableOpacity disabled={asyncDisabled} onPress={handlePress}>
-      {asyncDisabled ? (
-        <ActivityIndicator color={theme().neutral100} />
-      ) : (
-        <FavIcon />
-      )}
+      {asyncDisabled ? <StyledActivityIndicator /> : <FavIcon />}
     </TouchableOpacity>
   );
 };

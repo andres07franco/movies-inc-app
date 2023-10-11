@@ -22,14 +22,25 @@ Amazing app to explore your favorites movies, building in  React Native.
 
 ### Modules 
 
-| App Modules      |Notes                      |
-|------------------|--------------------------|
-| @core            | Domain Logic and Data Access |      
-| @shared          | Function, hooks, utils, around the app modules except @core |      
-| @authentication  | Logics and components related with the authentication in the app |      
-| @movies          | Logics and components related with the Movie in the app | 
-| @ui-components   | UI Library/Module to use around the app modules with Atomic Design Pattern |    
-| @Lib             | Custom implementation for external libraries (D of SOLID)|  
+- App folder: functional features in the app
+
+    | App Modules      |Notes                      |
+    |------------------|--------------------------| 
+    | @core            | Domain Logic and Data Access |      
+    | @shared          | Function, hooks, utils, around the app modules except @core |      
+    | @authentication  | Logics and components related with the authentication in the app |      
+    | @movies          | Logics and components related with the Movie in the app | 
+
+Note: authentication and movies  do not depend on each other.
+
+- Libs folder: Custom implementation for external libraries (D of SOLID), or custom functionalities
+
+    | Libs Modules      |Notes                      |
+    |------------------|--------------------------|
+    | @translations    | Custom implementation for translation library (react-i18nex)|  
+    | @ui-components   | UI Library/Module to use around the app modules with Atomic Design Pattern |    
+
+Note: the app modules in the table are in dependency order
 
 ### Highlights
 
@@ -37,7 +48,7 @@ Amazing app to explore your favorites movies, building in  React Native.
 
 - For get a better organization of the components and apply the S of SOLID I used the Atomic design.
 
-- The Core module organization was inspired by the Onion Architectures.
+- The Core module organization was inspired by the Onion Architecture.
 
   <img src='./assets/Onion-View.PNG' width='250'>
 
