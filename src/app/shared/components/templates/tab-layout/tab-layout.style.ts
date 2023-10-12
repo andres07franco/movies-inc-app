@@ -26,5 +26,5 @@ export const TabTitleContainer = styled(View)`
 
 export const ButtonContaner = styled(View)`
   margin-right: ${PixelRatio.roundToNearestPixel(10)}px;
-  padding-top: ${Constants.statusBarHeight}px;
+  padding-top: ${PixelRatio.roundToNearestPixel(20)}px;
 `;
