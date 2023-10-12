@@ -13,7 +13,7 @@ module.exports = function (api) {
             '@authentication': './src/app/authentication',
             '@shared': './src/app/shared',
             '@core': './src/app/core',
-            '@ui-components': './src/libs/ui-components',
+            '@ui-components': './src/app/shared/components',
             '@translations': './src/libs/translations',
             '@assets': './assets',
           },

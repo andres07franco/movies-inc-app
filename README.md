@@ -27,7 +27,8 @@ Amazing app to explore your favorites movies, building in  React Native.
     | App Modules      |Notes                      |
     |------------------|--------------------------| 
     | @core            | Domain Logic and Data Access |      
-    | @shared          | Function, hooks, utils, around the app modules except @core |      
+    | @shared          | Function, hooks, utils, around the app modules except @core |   
+    | @ui-components   |  UI Library/Module to use around the app modules with Atomic Design Pattern (inside shared folder)|        
     | @authentication  | Logics and components related with the authentication in the app |      
     | @movies          | Logics and components related with the Movie in the app | 
 
@@ -38,7 +39,6 @@ Note: authentication and movies  do not depend on each other.
     | Libs Modules      |Notes                      |
     |------------------|--------------------------|
     | @translations    | Custom implementation for translation library (react-i18nex)|  
-    | @ui-components   | UI Library/Module to use around the app modules with Atomic Design Pattern |    
 
 Note: the app modules in the table are in dependency order
 

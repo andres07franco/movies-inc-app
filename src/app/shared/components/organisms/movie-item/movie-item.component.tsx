@@ -30,7 +30,11 @@ export const MovieItem: React.FC<Props> = ({
         <PosterImageStyled posterPath={movie.posterPath} type="Small" />
         <MovieItemContainer>
           <InfoWrapper>
-            <MovieItemInfo movie={movie} />
+            <MovieItemInfo
+              title={movie.title}
+              releaseDate={movie.releaseDate}
+              language={movie.originalLanguage}
+            />
             {showFavorite && onPressFavoriteAsync && (
               <FavoriteButton
                 favorite={!!movie.favorite}
