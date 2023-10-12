@@ -22,25 +22,24 @@ Amazing app to explore your favorites movies, building in  React Native.
 
 ### Modules 
 
-- App folder: functional features in the app
+- App folder: Functional features in the app.
 
     | App Modules      |Notes                      |
     |------------------|--------------------------| 
     | @core            | Domain Logic and Data Access |      
     | @shared          | Function, hooks, utils, around the app modules except @core |   
-    | @ui-components   |  UI Library/Module to use around the app modules with Atomic Design Pattern (inside shared folder)|        
+    | @ui-components   |  UI Library/Module to use around the app modules with Atomic Design Pattern (it can be found inside shared folder)|        
     | @authentication  | Logics and components related with the authentication in the app |      
     | @movies          | Logics and components related with the Movie in the app | 
 
-Note: authentication and movies  do not depend on each other.
+    Note: The app modules in the table are in dependency order, Authentication and movies  do not depend on each other.
 
-- Libs folder: Custom implementation for external libraries (D of SOLID), or custom functionalities
+- Libs folder: Custom implementation for external libraries (D of SOLID), or custom functionalities.
 
     | Libs Modules      |Notes                      |
     |------------------|--------------------------|
     | @translations    | Custom implementation for translation library (react-i18nex)|  
 
-Note: the app modules in the table are in dependency order
 
 ### Highlights
 
@@ -103,3 +102,4 @@ We only need run:
 - [UI Design](https://dribbble.com/shots/5529233-Movie-App-Interface-Design-Dark-Theme)
 - [Atomic design](https://bradfrost.com/blog/post/atomic-web-design/)
 - [Onion Architecture](https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/)
+- [TMDB](https://developer.themoviedb.org/docs/getting-started)
