@@ -1,10 +1,10 @@
-import { HttpClient } from '@core/shared/domain/interfaces/http.client';
-import { SessionRaw } from './dtos/session-raw.dto';
-import { RequestTokenRaw } from './dtos/request-token-raw.dto';
-import { AuthenticationProvider } from '../domain/interfaces/authentication.provider';
-import { RequestToken } from '../domain/dtos/request-token.dto';
-import { LoginParams } from '../domain/dtos/login-params.dto';
-import { Session } from '../domain/dtos/session.dto';
+import { HttpClient } from '@core/shared/domain';
+import { SessionRaw, RequestTokenRaw } from '../dtos';
+import { AuthenticationProvider } from '../../domain/interfaces/authentication.provider';
+import { RequestToken } from '../../domain/dtos/request-token.dto';
+import { LoginParams } from '../../domain/dtos/login-params.dto';
+import { Session } from '../../domain/dtos/session.dto';
+import { mapToRequestToken } from '../mappers';
 
 export class AuthenticationRestProvider implements AuthenticationProvider {
   constructor(private httpClient: HttpClient) {}
@@ -13,10 +13,7 @@ export class AuthenticationRestProvider implements AuthenticationProvider {
     const data = await this.httpClient.get<RequestTokenRaw>(
       'authentication/token/new',
     );
-    return {
-      expiresAt: data.expires_at,
-      requestToken: data.request_token,
-    };
+    return mapToRequestToken(data);
   }
 
   async validateWithLogin(
@@ -31,10 +28,7 @@ export class AuthenticationRestProvider implements AuthenticationProvider {
         request_token: requestToken,
       },
     );
-    return {
-      expiresAt: data.expires_at,
-      requestToken: data.request_token,
-    };
+    return mapToRequestToken(data);
   }
 
   async createSession(requestToken: string): Promise<Session> {
