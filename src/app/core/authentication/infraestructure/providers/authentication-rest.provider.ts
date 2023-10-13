@@ -4,7 +4,7 @@ import { AuthenticationProvider } from '../../domain/interfaces/authentication.p
 import { RequestToken } from '../../domain/dtos/request-token.dto';
 import { LoginParams } from '../../domain/dtos/login-params.dto';
 import { Session } from '../../domain/dtos/session.dto';
-import { mapToRequestToken } from '../mappers';
+import { mapToRequestToken, mapToSession } from '../mappers';
 
 export class AuthenticationRestProvider implements AuthenticationProvider {
   constructor(private httpClient: HttpClient) {}
@@ -38,25 +38,13 @@ export class AuthenticationRestProvider implements AuthenticationProvider {
         request_token: requestToken,
       },
     );
-    var fecha = new Date();
-    fecha.setHours(fecha.getHours() + 1);
-    return {
-      expiresAt: data.expires_at ?? fecha.toISOString(),
-      sessionId: data.session_id,
-      isGuess: false,
-      username: '',
-    };
+    return mapToSession(data, false);
   }
 
   async createGuestSession(): Promise<Session> {
     const data = await this.httpClient.get<SessionRaw>(
       'authentication/guest_session/new',
     );
-    return {
-      expiresAt: data.expires_at,
-      sessionId: data.guest_session_id,
-      isGuess: true,
-      username: 'Guest',
-    };
+    return mapToSession(data, true);
   }
 }
