@@ -1,15 +1,9 @@
 import React from 'react';
-import { MovieDetailScreen, MovieListScreen } from '@movies';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Movie } from '@core/core.module';
 import { useLoadSessionEffect } from '@authentication/hooks';
+import { MovieStakParamList, Routes as MovieRoutes } from '@movies';
 
-export type RootStackParamList = {
-  MovieListScreen: undefined;
-  MovieDetailScreen: {
-    movie: Movie;
-  };
-};
+export type RootStackParamList = MovieStakParamList;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,16 +11,7 @@ export default function AppRoutes() {
   useLoadSessionEffect();
   return (
     <Stack.Navigator initialRouteName="MovieListScreen">
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="MovieListScreen"
-        component={MovieListScreen}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name="MovieDetailScreen"
-        component={MovieDetailScreen}
-      />
+      {MovieRoutes}
     </Stack.Navigator>
   );
 }

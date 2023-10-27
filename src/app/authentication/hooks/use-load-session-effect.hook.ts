@@ -1,11 +1,13 @@
 import { useCallback, useEffect } from 'react';
-import { useAtom } from 'jotai';
+import { useDispatch } from 'react-redux';
 import { authenticationProvider } from '@core';
-import { sessionAtom } from '@shared/states/session.state';
 import { isDateExpired } from '@shared/utils/dates/date.functions';
+import { useSessionSelector } from '@shared/redux/selectors';
+import { signInGuest } from '@shared/redux/slices';
 
 export const useLoadSessionEffect = () => {
-  const [session, setSession] = useAtom(sessionAtom);
+  const dispatch = useDispatch();
+  const { session } = useSessionSelector();
   const loadSession = useCallback(async () => {
     try {
       if (session && !isDateExpired(session.expiresAt)) {
@@ -15,11 +17,12 @@ export const useLoadSessionEffect = () => {
       if (!response.sessionId) {
         throw new Error('error on get session');
       }
-      setSession((prev) => ({ ...prev, ...response }));
+
+      dispatch(signInGuest(response));
     } catch (error) {
       console.log('Error on load session', error);
     }
-  }, [session, setSession]);
+  }, [dispatch, session]);
 
   useEffect(() => {
     loadSession();

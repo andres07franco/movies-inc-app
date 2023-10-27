@@ -1,4 +1,4 @@
-import { Casting } from '@core/core.module';
+import { Casting } from '../../domain/entities/casting.entity';
 import { CreditsRawDto } from '../dtos/credits-raw.dto';
 
 const imageUrlBase = process.env.EXPO_PUBLIC_IMAGE_URL_BASE;

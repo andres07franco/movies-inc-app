@@ -5,6 +5,22 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'src/app/app.routes';
 import { fireEvent, render } from '@testing-library/react-native';
 
+jest.mock('react-redux', () => ({
+  useDispatch: jest.fn(),
+}));
+
+jest.mock('@shared/hooks/use-theme.hook', () => ({
+  useTheme: jest.fn(() => ({
+    theme: () => ({ neutral100: '#ffffff' }),
+  })),
+}));
+
+jest.mock('@shared/redux/selectors', () => ({
+  useSessionSelector: jest.fn(() => ({
+    sessionStarted: true,
+  })),
+}));
+
 jest.mock('../../hooks', () => ({
   useGetNowPlaying: () => ({
     movies: [
@@ -24,6 +40,10 @@ jest.mock('../../hooks', () => ({
       },
     ],
   }),
+  useGetFavorities: () => ({
+    movies: [],
+  }),
+  useAddFavorite: () => ({ addFavorite: jest.fn() }),
 }));
 
 jest.mock('@translations', () => ({

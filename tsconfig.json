@@ -12,12 +12,16 @@
       "@core": ["src/app/core/core.module.ts"],
       "@shared/*": ["./src/app/shared/*"],
       "@shared": ["src/app/shared/shared.module.ts"],
-      "@ui-components/*": ["./src/app/ui-components/*"],
-      "@ui-components": ["src/app/ui-components.module.ts"],
+      "@ui-components/*": ["./src/app/shared/components/*"],
+      "@ui-components": ["src/app/shared/components/index.ts"],
       "@translations/*": ["./src/libs/translations/*"],
       "@translations": ["src/libs/translations/translations.module.ts"],
       "@assets/*": ["./assets/*"],
     }
   },
-  "typeRoots": ["./src/app/shared/types"] 
+  "typeRoots": ["./src/app/shared/types"],
+  "types": [
+    "styled-components-react-native",
+    "jest"
+  ]
 }

@@ -3,6 +3,7 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
+      'babel-plugin-styled-components',
       [
         'module-resolver',
         {
@@ -12,7 +13,7 @@ module.exports = function (api) {
             '@authentication': './src/app/authentication',
             '@shared': './src/app/shared',
             '@core': './src/app/core',
-            '@ui-components': './src/app/ui-components',
+            '@ui-components': './src/app/shared/components',
             '@translations': './src/libs/translations',
             '@assets': './assets',
           },

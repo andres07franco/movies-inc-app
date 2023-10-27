@@ -1,21 +1,25 @@
-import { AuthenticationRestProvider } from './authentication/infraestructure/authentication-rest.provider';
-import { AuthenticationProvider } from './authentication/services/interfaces/authentication.provider';
-import { CastingRestRepository } from './movies/infrastructure/casting-rest.repository';
-import { MoviesRestRepository } from './movies/infrastructure/movies-rest.repository';
-import { CastingRepository } from './movies/services/interfaces/casting.repository';
-import { MoviesRepository } from './movies/services/interfaces/movies.repository';
-import { HttpAxionClient } from './shared/infrastructure/clients/http-axios.client';
-import { HttpClient } from './shared/services/interfaces/http.client';
+import { HttpClient } from './shared/domain';
+import { HttpAxionClient } from './shared/infrastructure';
+export * from './shared/domain/dtos/';
 
-export * from './movies/entities/movie.entity';
-export * from './movies/services/interfaces/movies.repository';
+// Authentication
+import { AuthenticationRestProvider } from './authentication/infraestructure';
+import { AuthenticationProvider } from './authentication/domain/interfaces';
+import { LoginService } from './authentication/domain/services';
 
-export * from './movies/entities/casting.entity';
-export * from './movies/services/interfaces/casting.repository';
+// Movies
+import {
+  CastingRepository,
+  MoviesRepository,
+} from './movies/domain/interfaces';
+import {
+  CastingRestRepository,
+  MoviesRestRepository,
+} from './movies/infrastructure/';
+export * from './movies/domain/entities/';
+export * from './movies/domain/interfaces/';
 
-export * from './shared/dtos/pagination-params.dto';
-export * from './shared/dtos/pagination-results.dto';
-
+// init objects DI
 const httpClient: HttpClient = new HttpAxionClient(
   process.env.EXPO_PUBLIC_API_URL as string,
   process.env.EXPO_PUBLIC_AUTH_TOKEN as string,
@@ -28,4 +32,11 @@ const castingRepository: CastingRepository = new CastingRestRepository(
 const authenticationProvider: AuthenticationProvider =
   new AuthenticationRestProvider(httpClient);
 
-export { moviesRepository, castingRepository, authenticationProvider };
+const loginService = new LoginService(authenticationProvider);
+
+export {
+  moviesRepository,
+  castingRepository,
+  authenticationProvider,
+  loginService,
+};
