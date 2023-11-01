@@ -9,7 +9,7 @@ Amazing app to explore your favorites movies, building in  React Native.
 ![Demo APP](./assets/demo.gif)
 
 
-## Features Implemted
+## Features Implemented
 
 - FF1: Movie List
 - FF2: Movie Detail

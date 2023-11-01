@@ -1,6 +1,5 @@
 import React from 'react';
 import { Keyboard } from 'react-native';
-import * as yup from 'yup';
 import { useTranslation } from '@translations';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -8,11 +7,7 @@ import { LoginParams } from '@core/authentication/domain/dtos/login-params.dto';
 import { ModalBody, ModalFooter } from '@ui-components/atoms';
 import { Modal, ActionButton, FieldInput } from '@ui-components/molecules';
 import { useSignIn } from '../../hooks';
-
-const schema = yup.object().shape({
-  username: yup.string().required('Email is required'),
-  password: yup.string().required('Password is required'),
-});
+import { schema } from './signin.schema';
 
 interface Props {
   testID?: string;
@@ -24,8 +19,8 @@ export const SessionModal: React.FC<Props> = ({
   modalVisible,
   setModalVisible,
 }) => {
-  const { loading, signIn } = useSignIn();
   const { t } = useTranslation();
+  const { loading, signIn } = useSignIn();
   const {
     control,
     reset,
@@ -37,6 +32,7 @@ export const SessionModal: React.FC<Props> = ({
     reset();
     setModalVisible(false);
   };
+
   const handlePressSiginAsync = async (formData: LoginParams) => {
     Keyboard.dismiss();
     await signIn(formData, handleCancel);
