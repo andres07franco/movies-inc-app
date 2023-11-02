@@ -11,7 +11,7 @@ export function mapMovieRawToMovie(raw: MovieRawDto) {
     title: raw.title,
     posterPath: `${imageUrlBase}${raw.poster_path}`,
     releaseDate: raw.release_date,
-    voteAverage: raw.vote_average,
+    voteAverage: (raw?.vote_average ?? 0).toFixed(1),
     originalLanguage: raw.original_language,
     overview: raw.overview,
     genres: raw.genres ?? [],

@@ -1,0 +1,19 @@
+@startuml Login
+skin rose
+hide footbox
+
+title "Use Case - Login"
+actor       "User"                as User
+boundary    "Movie App"           as movieApp << Mobile App >>
+control     "TMDB Api"            as TMDBAPI <<Rest Api>>
+
+
+User-> movieApp: Enter username and password
+movieApp-> TMDBAPI++: createRequestToken()
+return  RequestToken
+movieApp-> TMDBAPI++: validateWithLogin(username, password, RequestToken)
+return  validatedToken
+movieApp-> TMDBAPI++: createSession(validatedToken)
+return  session
+movieApp-> User: Login success
+@enduml
