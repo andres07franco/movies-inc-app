@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Headline } from '../../molecules';
@@ -35,6 +35,12 @@ const TabLayout: React.FC<Props> = ({ headerButton, children }) => {
     setSelectedTabIndex(index);
     tabs[index].onSelected && tabs[index].onSelected();
   };
+
+  useEffect(() => {
+    if (tabs.length === 1) {
+      setSelectedTabIndex(0);
+    }
+  }, [tabs]);
 
   return (
     <>
